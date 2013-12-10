@@ -9,18 +9,11 @@ version](https://badge.fury.io/js/hydro-chai.png)](http://badge.fury.io/js/hydro
 
 Chai.js integration for [hydro](https://github.com/hydrojs/hydro)
 
-```js
-describe('My module', function() {
-  it('it really works', function() {
-
-  });
-});
-```
-
 ## Usage
 
 ```js
 hydro.set({
+  attach: global,
   plugins: ['hydro-chai'],
   chai: {
     styles: ['expect', 'assert', 'should'], // desired styles
@@ -29,7 +22,6 @@ hydro.set({
   },
 });
 ```
-
 ## Installation
 
 npm:
