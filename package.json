@@ -14,7 +14,7 @@
   },
   "peerDependencies": {
     "hydro": "0.x",
-    "chai": "*"
+    "chai": "1.x"
   },
   "devDependencies": {
     "coveralls": "~2.3.0",
