@@ -205,7 +205,11 @@ require.register("hydro-chai/index.js", function(exports, require, module){
  * External dependencies.
  */
 
-var chai = global.chai || require('chai');
+var root = this;
+
+var chai = typeof root['chai'] === 'undefined'
+  ? require('chai')
+  : root['chai'];
 
 /**
  * Chai.js plugin.
@@ -217,15 +221,16 @@ var chai = global.chai || require('chai');
  *    - diff:   boolean       show diff
  *
  * @param {Object} hydro
+ * @param {Object} util
  * @api public
  */
 
-module.exports = function(hydro) {
+module.exports = function(hydro, util) {
   var opts = hydro.get('chai') || {};
-  var styles = !Array.isArray(opts.styles) ? [opts.styles] : opts.styles;
+  var styles = util.toArray(opts.styles);
 
-  for (var i = 0, len = styles.length; i < len; i++) {
-    switch (styles[i]) {
+  util.forEach(styles, function(style) {
+    switch (style) {
       case 'expect':
         hydro.set('globals', 'expect', chai.expect);
         break;
@@ -236,7 +241,7 @@ module.exports = function(hydro) {
         hydro.set('globals', 'assert', chai.assert);
         break;
     }
-  }
+  });
 
   if (opts.hasOwnProperty('stack')) {
     chai.Assertion.includeStack = opts.stack;
