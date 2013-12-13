@@ -1,4 +1,9 @@
 
+0.0.3 / 2013-12-13
+==================
+
+  * Fix a bug where Assertion's stack is always true even when set to false
+
 0.0.2 / 2013-12-10
 ==================
 

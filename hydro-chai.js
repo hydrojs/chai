@@ -239,7 +239,7 @@ module.exports = function(hydro) {
   }
 
   if (opts.hasOwnProperty('stack')) {
-    chai.Assertion.includeStack = true;
+    chai.Assertion.includeStack = opts.stack;
   }
 
   if (opts.hasOwnProperty('diff')) {
