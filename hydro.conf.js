@@ -12,6 +12,7 @@ module.exports = function(hydro) {
     plugins: [chai],
     chai: {
       styles: ['expect', 'assert', 'should'],
+      plugins: ['chai-spies'],
       diff: true,
       stack: true
     },

@@ -16,6 +16,7 @@ hydro.set({
   attach: global,
   plugins: ['hydro-chai'],
   chai: {
+    plugins: ['chai-spies'],
     styles: ['expect', 'assert', 'should'], // desired styles
     diff: true, // show diff
     stack: true // include stack

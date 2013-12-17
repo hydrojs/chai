@@ -13,3 +13,7 @@ test('stack', function() {
 test('showDiff', function() {
   sassert(chai.Assertion.showDiff);
 });
+
+test('plugins', function() {
+  sassert(chai.spy);
+});

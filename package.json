@@ -23,7 +23,8 @@
     "hydro": "*",
     "simple-assert": "*",
     "hydro-simple": "*",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "chai-spies": "~0.5.1"
   },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"
