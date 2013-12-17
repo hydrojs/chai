@@ -219,6 +219,7 @@ var chai = typeof root['chai'] === 'undefined'
  *    - styles: array/string  should, expect, assert
  *    - stack:  boolean       include stack
  *    - diff:   boolean       show diff
+ *    - plugins array         list of chai.js plugins
  *
  * @param {Object} hydro
  * @param {Object} util
@@ -228,6 +229,8 @@ var chai = typeof root['chai'] === 'undefined'
 module.exports = function(hydro, util) {
   var opts = hydro.get('chai') || {};
   var styles = util.toArray(opts.styles);
+  var plugin = null;
+  opts.plugins = opts.plugins || [];
 
   util.forEach(styles, function(style) {
     switch (style) {
@@ -249,6 +252,14 @@ module.exports = function(hydro, util) {
 
   if (opts.hasOwnProperty('diff')) {
     chai.Assertion.showDiff = opts.diff;
+  }
+
+  for (var i = 0, len = opts.plugins.length; i < len; i++) {
+    plugin = typeof opts.plugins[i] === 'string'
+      ? require(opts.plugins[i])
+      : opts.plugins[i];
+
+    chai.use(plugin);
   }
 };
 

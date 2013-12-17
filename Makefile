@@ -1,8 +1,8 @@
 all: test
 
-# Make standalone browser build
+# Standalone
 
-browser: node_modules components
+standalone: node_modules components
 	@./node_modules/.bin/component-build -s hydro-chai -o .
 	@mv build.js hydro-chai.js
 
