@@ -1,4 +1,10 @@
 
+0.1.1 / 2013-12-22
+==================
+
+  * Workaround for PhantomJS bug
+  * Load plugins and chai with `loa`
+
 0.1.0 / 2013-12-17
 ==================
 
