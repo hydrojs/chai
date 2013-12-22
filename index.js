@@ -39,7 +39,8 @@ module.exports = function(hydro, util) {
         hydro.set('globals', 'expect', chai.expect);
         break;
       case 'should':
-        hydro.set('globals', 'should', chai.should());
+        var should = chai.Should();
+        if (!root.should) hydro.set('globals', 'should', should);
         break;
       case 'assert':
         hydro.set('globals', 'assert', chai.assert);
