@@ -200,16 +200,105 @@ require.relative = function(parent) {
 
   return localRequire;
 };
+require.register("hydrojs-loa/index.js", function(exports, require, module){
+/**
+ * global || window
+ */
+
+var root = typeof global !== 'undefined' ? global : window;
+
+/**
+ * toString.
+ */
+
+var toString = Object.prototype.toString;
+
+/**
+ * Check if `input` is String, Function or Object.
+ *
+ * @param {String} type
+ * @param {Mixed} input
+ * @returns {Boolean}
+ * @api private
+ */
+
+function is(type, input) {
+  if (type === 'Object') return Object(input) === input;
+  return toString.call(input) === '[object ' + type + ']';
+}
+
+/**
+ * Check if `input` is a string and if so, either
+ * refer to the global scope or `require` it. Then
+ * call `loa` again in case the exported object
+ * is a function.
+ *
+ * @param {Mixed} input
+ * @api private
+ */
+
+function str(input) {
+  if (!is('String', input)) return;
+  return root[input] || (root.require || require)(input);
+}
+
+/**
+ * Check if `input` is an object and if so assume it
+ * is already an loa of something and return it
+ * back;
+ *
+ * @param {Mixed} input
+ * @api private
+ */
+
+function handeled(input) {
+  if (is('Object', input) || is('Function', input)) return input;
+}
+
+/**
+ * Raise error.
+ *
+ * @param {Mixed} input
+ * @api private
+ */
+
+function raise(input) {
+  throw new TypeError("loa: Can't handle: " + input);
+}
+
+/**
+ * input is String             - global[input] || require(input)
+ * input is Object|Function    - return input
+ * else                        - throw
+ *
+ * @param {Mixed} input
+ * @returns {Object}
+ * @api public
+ */
+
+function loa(input) {
+  return handeled(input) || str(input) || raise(input);
+};
+
+/**
+ * Primary export.
+ */
+
+module.exports = loa;
+
+});
 require.register("hydro-chai/index.js", function(exports, require, module){
 /**
  * External dependencies.
  */
 
-var root = this;
+var loa = require('loa');
 
-var chai = typeof root['chai'] === 'undefined'
-  ? require('chai')
-  : root['chai'];
+/**
+ * Root.
+ */
+
+var root = typeof window === 'undefined' ? global : window;
 
 /**
  * Chai.js plugin.
@@ -227,9 +316,11 @@ var chai = typeof root['chai'] === 'undefined'
  */
 
 module.exports = function(hydro, util) {
+  var chai = loa('chai');
   var opts = hydro.get('chai') || {};
   var styles = util.toArray(opts.styles);
   var plugin = null;
+
   opts.plugins = opts.plugins || [];
 
   util.forEach(styles, function(style) {
@@ -238,7 +329,8 @@ module.exports = function(hydro, util) {
         hydro.set('globals', 'expect', chai.expect);
         break;
       case 'should':
-        hydro.set('globals', 'should', chai.should());
+        var should = chai.Should();
+        if (!root.should) hydro.set('globals', 'should', should);
         break;
       case 'assert':
         hydro.set('globals', 'assert', chai.assert);
@@ -255,15 +347,15 @@ module.exports = function(hydro, util) {
   }
 
   for (var i = 0, len = opts.plugins.length; i < len; i++) {
-    plugin = typeof opts.plugins[i] === 'string'
-      ? require(opts.plugins[i])
-      : opts.plugins[i];
-
-    chai.use(plugin);
+    chai.use(loa(opts.plugins[i]));
   }
 };
 
 });
+require.alias("hydrojs-loa/index.js", "hydro-chai/deps/loa/index.js");
+require.alias("hydrojs-loa/index.js", "hydro-chai/deps/loa/index.js");
+require.alias("hydrojs-loa/index.js", "loa/index.js");
+require.alias("hydrojs-loa/index.js", "hydrojs-loa/index.js");
 require.alias("hydro-chai/index.js", "hydro-chai/index.js");if (typeof exports == "object") {
   module.exports = require("hydro-chai");
 } else if (typeof define == "function" && define.amd) {
