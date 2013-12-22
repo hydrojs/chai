@@ -26,6 +26,9 @@
     "chai": "~1.8.1",
     "chai-spies": "~0.5.1"
   },
+  "dependencies": {
+    "loa": "0.0.2"
+  },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"
 }

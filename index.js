@@ -2,11 +2,13 @@
  * External dependencies.
  */
 
-var root = this;
+var loa = require('loa');
 
-var chai = typeof root['chai'] === 'undefined'
-  ? require('chai')
-  : root['chai'];
+/**
+ * Root.
+ */
+
+var root = typeof window === 'undefined' ? global : window;
 
 /**
  * Chai.js plugin.
@@ -24,9 +26,11 @@ var chai = typeof root['chai'] === 'undefined'
  */
 
 module.exports = function(hydro, util) {
+  var chai = loa('chai');
   var opts = hydro.get('chai') || {};
   var styles = util.toArray(opts.styles);
   var plugin = null;
+
   opts.plugins = opts.plugins || [];
 
   util.forEach(styles, function(style) {
@@ -52,10 +56,6 @@ module.exports = function(hydro, util) {
   }
 
   for (var i = 0, len = opts.plugins.length; i < len; i++) {
-    plugin = typeof opts.plugins[i] === 'string'
-      ? require(opts.plugins[i])
-      : opts.plugins[i];
-
-    chai.use(plugin);
+    chai.use(loa(opts.plugins[i]));
   }
 };

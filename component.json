@@ -8,6 +8,9 @@
   "scripts": [
     "index.js"
   ],
+  "dependencies": {
+    "hydrojs/loa": "0.0.2"
+  },
   "development": {
     "chaijs/simple-assert": "*"
   }
