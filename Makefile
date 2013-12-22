@@ -1,8 +1,12 @@
 all: test
 
-# Standalone
+# Install
 
-standalone: node_modules components
+install: node_modules components browser
+
+# Browser build
+
+browser: node_modules components
 	@./node_modules/.bin/component-build -s hydro-chai -o .
 	@mv build.js hydro-chai.js
 
@@ -11,13 +15,31 @@ standalone: node_modules components
 build: components
 	@./node_modules/.bin/component-build --dev
 
-release: build browser test
-	@git changelog
+test: test-node
+
+test-node:
+	@./node_modules/.bin/hydro
+
+# Clean
+
+clean: clean-node clean-browser clean-components clean-cov
+
+clean-node:
+	@rm -rf node_modules
+
+clean-browser:
+	@rm -f hydro-chai.js
+
+clean-components:
+	@rm -rf build
+	@rm -rf components
+
+clean-cov:
+	@rm -rf coverage
 
 # CI
 
-test:
-	@npm test
+ci: test-node coveralls
 
 coveralls:
 	@./node_modules/.bin/istanbul cover ./node_modules/.bin/_hydro --report lcovonly -- \
@@ -28,4 +50,7 @@ coveralls:
 components: node_modules component.json
 	@./node_modules/.bin/component-install --dev
 
-.PHONY: all test coverage browser
+node_modules: package.json
+	@npm install
+
+.PHONY: all browser node_modules coverage
