@@ -37,14 +37,12 @@ module.exports = function(hydro, util) {
   util.forEach(styles, function(style) {
     switch (style) {
       case 'expect':
-        hydro.set('globals', 'expect', chai.expect);
+      case 'assert':
+        hydro.set('globals', style, chai[style]);
         break;
       case 'should':
         var should = chai.Should();
         if (!root.should) hydro.set('globals', 'should', should);
-        break;
-      case 'assert':
-        hydro.set('globals', 'assert', chai.assert);
         break;
     }
   });
