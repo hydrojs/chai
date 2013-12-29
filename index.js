@@ -15,6 +15,7 @@ var root = typeof window === 'undefined' ? global : window;
  *
  * Options:
  *
+ *    - chai:   object/string a reference to chai
  *    - styles: array/string  should, expect, assert
  *    - stack:  boolean       include stack
  *    - diff:   boolean       show diff
@@ -26,8 +27,8 @@ var root = typeof window === 'undefined' ? global : window;
  */
 
 module.exports = function(hydro, util) {
-  var chai = loa('chai');
   var opts = hydro.get('chai') || {};
+  var chai = loa(opts.chai || 'chai');
   var styles = util.toArray(opts.styles);
   var plugin = null;
 
@@ -36,14 +37,12 @@ module.exports = function(hydro, util) {
   util.forEach(styles, function(style) {
     switch (style) {
       case 'expect':
-        hydro.set('globals', 'expect', chai.expect);
+      case 'assert':
+        hydro.set('globals', style, chai[style]);
         break;
       case 'should':
         var should = chai.Should();
         if (!root.should) hydro.set('globals', 'should', should);
-        break;
-      case 'assert':
-        hydro.set('globals', 'assert', chai.assert);
         break;
     }
   });
