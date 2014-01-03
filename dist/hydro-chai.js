@@ -331,8 +331,8 @@ module.exports = function(hydro, util) {
         hydro.set('globals', style, chai[style]);
         break;
       case 'should':
-        var should = chai.Should();
-        if (!root.should) hydro.set('globals', 'should', should);
+        root.should = undefined;
+        root.should = chai.should();
         break;
     }
   });
@@ -360,5 +360,5 @@ require.alias("hydro-chai/index.js", "hydro-chai/index.js");if (typeof exports =
 } else if (typeof define == "function" && define.amd) {
   define(function(){ return require("hydro-chai"); });
 } else {
-  this["Hydro"] = require("hydro-chai");
+  this["hydro-chai"] = require("hydro-chai");
 }})();

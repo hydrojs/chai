@@ -2,6 +2,7 @@
 # Variables
 #
 
+NAME = hydro-chai
 KARMA = node_modules/.bin/karma
 BROWSER = dist/hydro-chai.js
 COV_EXEC = node_modules/.bin/_hydro
@@ -28,7 +29,7 @@ install: node_modules components build browser
 #
 
 browser: node_modules components
-	@$(COMPONENT_BUILD) -s Hydro -o .
+	@$(COMPONENT_BUILD) -s $(NAME) -o .
 	@mv build.js $(BROWSER)
 
 #
