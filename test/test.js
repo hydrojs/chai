@@ -17,3 +17,7 @@ test('showDiff', function() {
 test('plugins', function() {
   sassert(chai.spy);
 });
+
+test('should', function() {
+  should.not.exist(null);
+});
