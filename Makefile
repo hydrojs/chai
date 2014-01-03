@@ -3,7 +3,7 @@
 #
 
 KARMA = node_modules/.bin/karma
-BROWSER = hydro-chai.js
+BROWSER = dist/hydro-chai.js
 COV_EXEC = node_modules/.bin/_hydro
 TEST_EXEC = node_modules/.bin/hydro
 ISTANBUL = node_modules/.bin/istanbul
