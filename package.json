@@ -27,7 +27,6 @@
     "karma-firefox-launcher": "~0.1.2",
     "karma-phantomjs-launcher": "~0.1.1",
     "karma-safari-launcher": "~0.1.1",
-    "karma-sauce-launcher": "embarkmobile/karma-sauce-launcher#feature-passfail",
     "karma-hydro": "*",
     "chai": "~1.8.1",
     "chai-spies": "~0.5.1"
