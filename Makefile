@@ -37,7 +37,6 @@ browser: node_modules components
 
 build: node_modules components
 	@$(COMPONENT_BUILD) --dev
-	@touch $@
 
 #
 # Run all tests
@@ -57,6 +56,10 @@ test-node: node_modules
 #
 
 test-browser: test-component
+
+#
+# Test with component
+#
 
 test-component: node_modules components build
 	@KARMA_TARGET=component $(KARMA) start
@@ -136,4 +139,4 @@ node_modules: package.json
 # Instructions
 #
 
-.PHONY: all test coverage browser
+.PHONY: all test coverage browser build

@@ -41,8 +41,8 @@ module.exports = function(hydro, util) {
         hydro.set('globals', style, chai[style]);
         break;
       case 'should':
-        var should = chai.Should();
-        if (!root.should) hydro.set('globals', 'should', should);
+        root.should = undefined;
+        root.should = chai.should();
         break;
     }
   });
