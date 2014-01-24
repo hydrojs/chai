@@ -14,7 +14,8 @@ module.exports = function(hydro) {
       styles: ['expect', 'assert', 'should'],
       plugins: ['chai-spies'],
       diff: true,
-      stack: true
+      stack: true,
+      global: true
     },
     attach: global,
     proxies: {
