@@ -111,15 +111,7 @@ clean-cov:
 # CI
 #
 
-ci: test-node coveralls
-
-#
-# Send coverage to coveralls
-#
-
-coveralls: node_modules
-	@$(ISTANBUL) cover $(COV_EXEC) --report lcovonly \
-		&& cat ./coverage/lcov.info | $(COVERALLS)
+ci: test-node
 
 #
 # Install all components (+ dev)

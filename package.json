@@ -16,7 +16,6 @@
     "chai": "1.x"
   },
   "devDependencies": {
-    "coveralls": "~2.3.0",
     "istanbul": "~0.1.46",
     "component": "~0.18.0",
     "hydro": "*",

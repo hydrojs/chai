@@ -1,7 +1,6 @@
 [![NPM
 version](https://badge.fury.io/js/hydro-chai.png)](http://badge.fury.io/js/hydro-chai)
 [![Build Status](https://secure.travis-ci.org/hydrojs/hydro-chai.png)](http://travis-ci.org/hydrojs/hydro-chai)
-[![Coverage Status](https://coveralls.io/repos/hydrojs/hydro-chai/badge.png?branch=master)](https://coveralls.io/r/hydrojs/hydro-chai?branch=master)
 
 # hydro-chai
 
