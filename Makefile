@@ -16,7 +16,7 @@ COMPONENT_INSTALL = node_modules/.bin/component-install
 # All
 #
 
-all: test
+all: clean install test
 
 #
 # Install
