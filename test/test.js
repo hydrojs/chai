@@ -1,4 +1,6 @@
-var chai = require('chai');
+test('global', function() {
+  sassert(chai);
+});
 
 test('styles', function() {
   sassert(should);
