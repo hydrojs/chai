@@ -17,6 +17,7 @@ module.exports = function(config) {
         chai: {
           styles: ['expect', 'assert', 'should'],
           plugins: ['chai-spies'],
+          global: true,
           diff: true,
           stack: true
         },

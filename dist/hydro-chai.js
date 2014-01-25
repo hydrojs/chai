@@ -345,6 +345,10 @@ module.exports = function(hydro, util) {
     chai.Assertion.showDiff = opts.diff;
   }
 
+  if (opts.hasOwnProperty('global')) {
+    hydro.set('globals', 'chai', chai);
+  }
+
   for (var i = 0, len = opts.plugins.length; i < len; i++) {
     chai.use(loa(opts.plugins[i]));
   }
