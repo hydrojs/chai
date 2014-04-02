@@ -9,11 +9,11 @@ test('styles', function() {
 });
 
 test('stack', function() {
-  sassert(chai.Assertion.includeStack);
+  sassert(chai.config.includeStack);
 });
 
 test('showDiff', function() {
-  sassert(chai.Assertion.showDiff);
+  sassert(chai.config.showDiff);
 });
 
 test('plugins', function() {

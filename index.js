@@ -30,7 +30,6 @@ module.exports = function(hydro, util) {
   var opts = hydro.get('chai') || {};
   var chai = loa(opts.chai || 'chai');
   var styles = util.toArray(opts.styles);
-  var plugin = null;
 
   opts.plugins = opts.plugins || [];
 
@@ -48,11 +47,11 @@ module.exports = function(hydro, util) {
   });
 
   if (opts.hasOwnProperty('stack')) {
-    chai.Assertion.includeStack = opts.stack;
+    chai.config.includeStack = opts.stack;
   }
 
   if (opts.hasOwnProperty('diff')) {
-    chai.Assertion.showDiff = opts.diff;
+    chai.config.showDiff = opts.diff;
   }
 
   if (opts.hasOwnProperty('global')) {
