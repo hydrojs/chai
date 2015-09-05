@@ -3,17 +3,12 @@
   "version": "0.3.0",
   "description": "Chai.js integration for hydro",
   "main": "./index.js",
-  "homepage": "https://github.com/hydrojs/hydro-chai",
   "scripts": {
     "test": "hydro"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hydrojs/hydro-chai"
-  },
-  "peerDependencies": {
-    "hydro": "0.x",
-    "chai": "1.x"
+  "repository": "hydrojs/hydro-chai",
+  "dependencies": {
+    "loa": "0"
   },
   "devDependencies": {
     "istanbul": "~0.1.46",
@@ -29,9 +24,6 @@
     "karma-hydro": "*",
     "chai": "~1.9.1",
     "chai-spies": "~0.5.1"
-  },
-  "dependencies": {
-    "loa": "0.0.2"
   },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"
